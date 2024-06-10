@@ -6,12 +6,12 @@ import useOrder from './hooks/useOrder'
 import OrderTotal from './components/OrderTotal'
 
 function App() {
-  const { order, addItem, removeItem } = useOrder()
+  const { order, addItem, removeItem, tip, setTip } = useOrder()
   return (
     <>
       <header className="bg-teal-400 py-5">
         <h1 className="text-4xl font-black text-center">
-          calculadora de Propinas
+          Calculadora de propinas
         </h1>
       </header>
       <main className="max-w-7xl mx-auto py-20 grid md:grid-cols-2">
@@ -25,8 +25,8 @@ function App() {
         </div>
         <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
           <OrderContents order={order} removeItem={removeItem} />
-          <TipPercentajeForm/>
-          <OrderTotal order={order}/>
+          <TipPercentajeForm setTip={setTip} />
+          <OrderTotal order={order} tip={tip} />
         </div>
       </main>
     </>
