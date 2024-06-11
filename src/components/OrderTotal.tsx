@@ -5,9 +5,10 @@ import { useMemo } from 'react'
 type OrderTotalsProps = {
   order: OrderItem[]
   tip: number
+  placeOrder: () => void
 }
 
-const OrderTotal = ({ order, tip }: OrderTotalsProps) => {
+const OrderTotal = ({ order, tip, placeOrder }: OrderTotalsProps) => {
   const subtotalAmmount = useMemo(
     () => order.reduce((total, item) => total + item.quantity * item.price, 0),
     [order]
@@ -31,7 +32,7 @@ const OrderTotal = ({ order, tip }: OrderTotalsProps) => {
           Total a pagar: <span className="font-bold">{formatCurrency(totalAmount)}</span>
         </p>
       </div>
-      <button disabled={totalAmount === 0 } className='w-full bg-black p-3 uppercase text-white font-bold mt-10'> Guardar Orden </button>
+      <button onClick={placeOrder} disabled={totalAmount === 0 } className='w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled:opacity-10'> Guardar Orden </button>
     </>
   )
 }
